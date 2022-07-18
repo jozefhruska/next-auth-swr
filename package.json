@@ -1,0 +1,58 @@
+{
+  "name": "next-auth-swr",
+  "version": "0.0.1",
+  "description": "An SWR-powered alternative to NextAuth.js built-in client",
+  "license": "MIT",
+  "author": "Jozef Hruška <me@jozefhruska.com>",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "keywords": [
+    "next-auth",
+    "react",
+    "swr"
+  ],
+  "scripts": {
+    "build": "tsc --emitDeclarationOnly && node scripts/build.js",
+    "test:ci": "npm run lint",
+    "lint": "eslint ./src --ext ts",
+    "lint:fix": "eslint ./src --ext ts --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jozefhruska/next-auth-swr"
+  },
+  "bugs": {
+    "url": "https://github.com/jozefhruska/next-auth-swr/issues"
+  },
+  "files": [
+    "src/**/*",
+    "dist/**/*"
+  ],
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs"
+    }
+  },
+  "peerDependencies": {
+    "next-auth": "^4",
+    "react": "^17.0.2 || ^18",
+    "react-dom": "^17.0.2 || ^18",
+    "swr": "^1.1.2"
+  },
+  "devDependencies": {
+    "@types/react": "~18.0.15",
+    "@typescript-eslint/eslint-plugin": "^5.30.6",
+    "@typescript-eslint/parser": "^5.30.6",
+    "esbuild": "^0.14.49",
+    "eslint": "^8.20.0",
+    "eslint-config-prettier": "^8.5.0",
+    "next-auth": "^4.0.0",
+    "prettier": "^2.7.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "swr": "^1.1.2",
+    "typescript": "^4.7.4"
+  }
+}
