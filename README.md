@@ -1,7 +1,17 @@
 <p align="center">
   <h2 align="center">NextAuth.js SWR Client</h2>
-  <p align="center">next-auth-swr</p>
   <p align="center">An SWR-powered alternative to NextAuth.js built-in client</p>
+  <p align="center">
+    <a aria-label="NPM version" href="https://www.npmjs.com/package/next-auth-swr">
+      <img alt="npm version badge" src="https://badgen.net/npm/v/next-auth-swr">
+    </a>
+    <a aria-label="Package size" href="https://bundlephobia.com/package/next-auth-swr">
+      <img alt="package size badge" src="https://badgen.net/bundlephobia/minzip/next-auth-swr">
+    </a>
+    <a aria-label="License" href="https://github.com/jozefhruska/next-auth-swr/blob/main/LICENSE">
+      <img alt="license badge" src="https://badgen.net/npm/license/next-auth-swr">
+    </a>
+  </p>
 </p>
 
 ## Overview
