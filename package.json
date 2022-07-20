@@ -14,7 +14,6 @@
   ],
   "scripts": {
     "build": "tsc --emitDeclarationOnly && node scripts/build.js",
-    "test:ci": "npm run lint",
     "lint": "eslint ./src --ext ts",
     "lint:fix": "eslint ./src --ext ts --fix"
   },
@@ -42,7 +41,9 @@
     "swr": "^1.1.2"
   },
   "devDependencies": {
-    "@types/react": "~18.0.15",
+    "@semantic-release/changelog": "^6.0.1",
+    "@semantic-release/git": "^10.0.1",
+    "@types/react": "^18.0.15",
     "@typescript-eslint/eslint-plugin": "^5.30.6",
     "@typescript-eslint/parser": "^5.30.6",
     "esbuild": "^0.14.49",
