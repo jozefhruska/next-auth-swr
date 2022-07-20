@@ -1,6 +1,6 @@
 {
   "name": "next-auth-swr",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "An SWR-powered alternative to NextAuth.js built-in client",
   "license": "MIT",
   "author": "Jozef Hruška <me@jozefhruska.com>",
