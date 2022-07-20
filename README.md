@@ -51,8 +51,32 @@ const Profile: React.FC = () => {
 };
 ```
 
-> **Warning**
+> **Warning**  
 > Ensure you import `useSession` from `next-auth-swr` and not the original `next-auth` package.
+
+## Fallback data
+
+You can also use the standard `SWRConfig` to set the default session for pages that support server-side rendering. To learn more about prerendering with default data, check out [SWR documentation](https://swr.vercel.app/docs/with-nextjs#pre-rendering-with-default-data).
+
+```tsx
+import { AppProps } from "next/app";
+import { SWRConfig } from "swr";
+
+const MyApp = ({ Component, pageProps }: AppProps) => (
+  <SWRConfig
+    value={{
+      fallback: {
+        "/api/auth/session": pageProps.session,
+      },
+    }}
+  >
+    <Component {...pageProps} />
+  </SWRConfig>
+);
+
+export default MyApp;
+
+```
 
 ## API Reference
 
