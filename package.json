@@ -14,8 +14,8 @@
   ],
   "scripts": {
     "build": "tsc --emitDeclarationOnly && node scripts/build.js",
-    "lint": "eslint ./src --ext ts",
-    "lint:fix": "eslint ./src --ext ts --fix"
+    "lint": "eslint ./src --ext ts,tsx",
+    "lint:fix": "eslint ./src --ext ts,tsx --fix"
   },
   "repository": {
     "type": "git",
