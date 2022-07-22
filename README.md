@@ -54,29 +54,31 @@ const Profile: React.FC = () => {
 > **Warning**  
 > Ensure you import `useSession` from `next-auth-swr` and not the original `next-auth` package.
 
-## Fallback data
+## Default session data
 
-You can also use the standard `SWRConfig` to set the default session for pages that support server-side rendering. To learn more about prerendering with default data, check out [SWR documentation](https://swr.vercel.app/docs/with-nextjs#pre-rendering-with-default-data).
+To configure the default session or SWR configuration globally, you can use the `SessionProvider`. All `useSession` hooks consuming the global context will use the default session as the fallback data.
 
 ```tsx
 import { AppProps } from "next/app";
 import { SWRConfig } from "swr";
 
 const MyApp = ({ Component, pageProps }: AppProps) => (
-  <SWRConfig
-    value={{
-      fallback: {
-        "/api/auth/session": pageProps.session,
-      },
+  <SessionProvider
+    session={pageProps.session}
+    config={{
+      refreshInterval: 30000,
+      refreshWhenHidden: false,
     }}
   >
     <Component {...pageProps} />
-  </SWRConfig>
+  </SessionProvider>
 );
 
 export default MyApp;
-
 ```
+
+> **Note**  
+> You can also use the standard `SWRConfig`, but remember this will affect all SWR hooks, not only the `useSession` hook.
 
 ## API Reference
 
@@ -92,6 +94,13 @@ useSession(options?: UseSessionOptions): SWRResponse<Session | null>
 |:--------------------|:-------------------|:----------------------------------------------------------------------------------------------------------|:-----------:|
 | `required`          | `boolean`          | Standard `next-auth` option ([See more](https://next-auth.js.org/getting-started/client#require-session)) |   `false`   |
 | `onUnauthenticated` | `() => void`       | Standard `next-auth` option ([See more](https://next-auth.js.org/getting-started/client#require-session)) | `undefined` |
+| `config`            | `SWRConfiguration` | Standard `swr` configuration ([See more](https://swr.vercel.app/docs/options))                            | `undefined` |
+
+### SessionProvider
+
+| Option              | Type               | Description                                                                                               |   Default   |
+|:--------------------|:-------------------|:----------------------------------------------------------------------------------------------------------|:-----------:|
+| `session`           | `Session`          | The default session (`useSession` fallback data)                                                          | `undefined` |
 | `config`            | `SWRConfiguration` | Standard `swr` configuration ([See more](https://swr.vercel.app/docs/options))                            | `undefined` |
 
 ## License
