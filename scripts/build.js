@@ -3,7 +3,7 @@ const esbuild = require('esbuild');
 
 esbuild
   .build({
-    entryPoints: ['./src/index.ts'],
+    entryPoints: ['./src/index.tsx'],
     bundle: true,
     minify: true,
     sourcemap: true,
@@ -15,7 +15,7 @@ esbuild
 
 esbuild
   .build({
-    entryPoints: ['./src/index.ts'],
+    entryPoints: ['./src/index.tsx'],
     bundle: true,
     minify: true,
     format: 'cjs',

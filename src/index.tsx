@@ -1,6 +1,14 @@
+import React, { createContext, FC, ReactNode, useContext } from 'react';
 import { Session } from 'next-auth';
-import useSWR, { SWRConfiguration, SWRResponse } from 'swr';
 import { UseSessionOptions as OriginalUseSessionOptions } from 'next-auth/react';
+import useSWR, { SWRConfiguration, SWRResponse } from 'swr';
+
+export type SessionContextValue = {
+  session?: Session | null;
+  config?: SWRConfiguration<Session | null>;
+};
+
+const SessionContext = createContext<SessionContextValue>({});
 
 const fetcher = (url: string): Promise<Session | null> => {
   return fetch(url).then(async (response) => {
@@ -22,13 +30,22 @@ export interface UseSessionOptions<R extends boolean>
 export const useSession = <R extends boolean>(
   options?: UseSessionOptions<R>
 ): SWRResponse<Session | null> => {
-  const { required, onUnauthenticated, config: swrConfig } = options ?? {};
+  const { session, config: globalConfig } = useContext(SessionContext);
+
+  const {
+    required,
+    onUnauthenticated,
+    config: localConfig,
+  } = options ?? {};
 
   return useSWR<Session | null>('/api/auth/session', fetcher, {
-    ...swrConfig,
+    ...globalConfig,
+    ...localConfig,
+    fallbackData:
+      localConfig?.fallbackData ?? session ?? globalConfig?.fallbackData,
     onSuccess: (data, key, config) => {
-      if (typeof swrConfig?.onSuccess === 'function') {
-        swrConfig.onSuccess(data, key, config);
+      if (typeof localConfig?.onSuccess === 'function') {
+        localConfig.onSuccess(data, key, config);
       }
 
       if (required && !data) {
@@ -40,8 +57,8 @@ export const useSession = <R extends boolean>(
       }
     },
     onError: (data, key, config) => {
-      if (typeof swrConfig?.onError === 'function') {
-        swrConfig.onError(data, key, config);
+      if (typeof localConfig?.onError === 'function') {
+        localConfig.onError(data, key, config);
       }
 
       if (required && !data) {
@@ -54,3 +71,16 @@ export const useSession = <R extends boolean>(
     },
   });
 };
+
+export type SessionProviderProps = SessionContextValue & {
+  children: ReactNode;
+};
+
+export const SessionProvider: FC<SessionProviderProps> = ({
+  children,
+  ...value
+}) => (
+  <SessionContext.Provider value={value}>
+    {children}
+  </SessionContext.Provider>
+);
