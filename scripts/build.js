@@ -20,6 +20,6 @@ esbuild
     minify: true,
     format: 'cjs',
     external: ['react', 'react-dom', 'swr'],
-    outfile: './dist/index.cjs',
+    outfile: './dist/index.js',
   })
   .catch(() => process.exit(1));
