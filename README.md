@@ -98,6 +98,8 @@ useSession(options?: UseSessionOptions): SWRResponse<Session | null>
 
 ### SessionProvider
 
+#### Options
+
 | Option              | Type               | Description                                                                                               |   Default   |
 |:--------------------|:-------------------|:----------------------------------------------------------------------------------------------------------|:-----------:|
 | `session`           | `Session`          | The default session (`useSession` fallback data)                                                          | `undefined` |
