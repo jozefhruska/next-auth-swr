@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/jozefhruska/next-auth-swr/compare/v1.1.0...v1.1.1) (2022-07-22)
+
+
+### Bug Fixes
+
+* main file extension ([e5ae88e](https://github.com/jozefhruska/next-auth-swr/commit/e5ae88e3e2fc13aea495a073ca8353a7deee930f))
+
 # [1.1.0](https://github.com/jozefhruska/next-auth-swr/compare/v1.0.0...v1.1.0) (2022-07-22)
 
 
